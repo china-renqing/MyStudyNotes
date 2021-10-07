@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #div3 {
+        width: 100px;
+        height: 100px;
+        background-color: #00acec;
+    }
+
+    #div2 {
+        width: 200px;
+        height: 200px;
+        background-color: pink;
+    }
+
+    #div1 {
+        width: 300px;
+        height: 300px;
+        background-color: antiquewhite;
+
+    }
+</style>
+
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3"></div>
+        </div>
+    </div>
+    <script>
+        let div1 = document.querySelector("#div1")
+        let div2 = document.querySelector("#div2")
+        let div3 = document.querySelector("#div3")
+        /* 不阻止事件冒泡的写法 */
+        // div1.onclick = function () {
+        //     console.log(this.id)
+        // }
+        // div2.onclick = function () {
+        //     console.log(this.id)
+        // }
+        // div3.onclick = function () {
+        //     console.log(this.id)
+        // }
+
+        /* 阻止事件冒泡的写法 */
+        // div1.onclick = function () {
+        //     console.log(this.id)
+        // }
+        // div2.onclick = function () {
+        //     console.log(this.id)
+        // }
+        // div3.onclick = function (e) {
+        //     e.stopPropagation()
+        //     console.log(this.id)
+        // }
+
+        /* 当最后一个参数，也就是控制事件阶段的参数，为true时是事件冒泡，为false时为事件捕获。 */
+        div1.addEventListener("click", f1, false)
+        div2.addEventListener("click", f1, false)
+        div3.addEventListener("click", f1, false)
+        //在函数中定义的时候如果加上事件传递阻止即可防止事件传递
+        function f1(e) {
+            // e.stopPropagation()
+            console.log(this.id)
+        }
+        document.onkeydown=function(e){
+            console.log(e)
+        }
+    </script>
+</body>
+
+</html>
